@@ -1,3 +1,6 @@
+#ifndef ALLOCATOR_H
+#define ALLOCATOR_H
+
 #include <stdio.h>
 #include <cuda.h>
 #include <assert.h>
@@ -53,10 +56,10 @@ struct region_list_struct{
 };
 typedef struct region_list_struct region_list;
 
-region_list *r_list;
-allocated_list *device_overallocated;
-allocated_list *array_list;
-pthread_mutex_t mutex;
+static region_list *r_list;
+static allocated_list *device_overallocated;
+static allocated_list *array_list;
+static pthread_mutex_t mutex;
 
 #define LIST_INIT(list) {   \
     list->head=NULL;         \
@@ -157,3 +160,4 @@ int add_chunk_only(CUdeviceptr address,size_t size);
 // Checks memory type
 int check_memory_type(CUdeviceptr address);
 
+#endif
