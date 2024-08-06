@@ -2,6 +2,8 @@
 #include <string.h>
 #include <dirent.h>
 #include <ctype.h>
+#include <errno.h>
+#include <sys/stat.h>
 #include "include/utils.h"
 #include "include/log_utils.h"
 #include "include/nvml_prefix.h"
@@ -10,12 +12,20 @@
 #include "include/libcuda_hook.h"
 #include "multiprocess/multiprocess_memory_limit.h"
 
+const char* unified_lock_dir = "/tmp/vgpulock";
 const char* unified_lock="/tmp/vgpulock/lock";
 extern int context_size;
 extern int cuda_to_nvml_map[16];
 
 
 int try_lock_unified_lock() {
+    // Create the directory if it does not exist
+    if (mkdir(unified_lock_dir, S_IRWXU) == -1) {
+        if (errno != EEXIST) {
+            printf("Failed to create directory: %s\n", strerror(errno));
+            return 1;
+        }
+    }
     int fd = open(unified_lock,O_CREAT | O_EXCL,S_IRWXU);
     int cnt = 0;
     LOG_INFO("try_lock_unified_lock:%d",fd);
