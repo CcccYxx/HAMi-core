@@ -35,4 +35,4 @@ echo "CI_COMMIT_BRANCH:${CI_COMMIT_BRANCH}"
 echo "CI_COMMIT_SHA:${CI_COMMIT_SHA}"
 
 ${CMAKE} .. ${CMAKE_OPTIONS} -DTEST_DEVICE_ID=0
-make -j$J
+make -j$J vgpu
