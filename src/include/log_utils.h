@@ -22,13 +22,13 @@
 
 #define LOG_WARN(msg, ...) { \
     if ( \
-        (getenv("LIBCUDA_LOG_LEVEL")==NULL) || \
-        ((getenv("LIBCUDA_LOG_LEVEL")!=NULL) && (atoi(getenv("LIBCUDA_LOG_LEVEL"))>=2))) \
+        /*(getenv("LIBCUDA_LOG_LEVEL")==NULL) || */\
+        ((getenv("LIBCUDA_LOG_LEVEL")!=NULL) && (atoi(getenv("LIBCUDA_LOG_LEVEL"))>=1))) \
        fprintf(stderr, "[HAMI-core Warn(%d:%ld:%s:%d)]: "msg"\n", getpid(),pthread_self(),basename(__FILE__),__LINE__,##__VA_ARGS__); }
 
 #define LOG_MSG(msg, ...) { \
     if ( \
-        (getenv("LIBCUDA_LOG_LEVEL")==NULL) || \
+        /*(getenv("LIBCUDA_LOG_LEVEL")==NULL) || */\
         ((getenv("LIBCUDA_LOG_LEVEL")!=NULL) && (atoi(getenv("LIBCUDA_LOG_LEVEL"))>=2))) \
        fprintf(stderr, "[HAMI-core Msg(%d:%ld:%s:%d)]: "msg"\n", getpid(),pthread_self(),basename(__FILE__),__LINE__,##__VA_ARGS__); }
 
