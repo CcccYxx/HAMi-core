@@ -69,10 +69,11 @@ Use environment variable LIBCUDA_LOG_LEVEL to set the visibility of logs
 
 | LIBCUDA_LOG_LEVEL | description |
 | ----------------- | ----------- |
-|  0          | errors only |
-|  1(default),2          | errors,warnings,messages |
-|  3                | infos,errors,warnings,messages |
-|  4                | debugs,errors,warnings,messages |
+|  0(default)         | errors only |
+|  1           | errors, warnings |
+|  2          | errors, warnings, messages |
+|  3                | infos, errors, warnings, messages |
+|  4                | debugs, errors, warnings, messages |
 
 
 ## Test Raw APIs
